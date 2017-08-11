@@ -99,7 +99,7 @@ func (s _Sprite) save(spriteImg image.Image, items []_ImageItem, fullWidth, full
 			return nil
 		}
 		target = s.addFingerPrint(targetFolder, s.name+".png")
-		loggers.Succ("[Sprite][%s] Saved sprite image: %s", s.entry, target)
+		//loggers.Succ("[Sprite][%s] Saved sprite image: %s", s.entry, target)
 
 		// generate the stylus file
 		stylus := "assets/stylesheets/sprites"

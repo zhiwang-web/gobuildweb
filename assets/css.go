@@ -67,7 +67,7 @@ func (css _StyleSheet) Build(isProduction bool) error {
 	}
 	// * generate the hash, clear old bundle, move to target
 	target = css.addFingerPrint("public/stylesheets", css.entry+".css")
-	loggers.Succ("[CSS][%s] Saved assset: %s", css.entry, target)
+	// loggers.Succ("[CSS][%s] Saved assset: %s", css.entry, target)
 
 	return nil
 }

@@ -5,8 +5,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/mijia/gobuildweb/loggers"
+	//"github.com/mijia/gobuildweb/loggers"
 )
 
 type _ImageLibrary struct {
@@ -39,7 +38,7 @@ func (il _ImageLibrary) Build(isProduction bool) error {
 				return err
 			}
 			target = il.addFingerPrint(targetFolder, imgItem.name)
-			loggers.Succ("[ImageLibrary][%s] Saved images: %s", il.entry, target)
+			// loggers.Succ("[ImageLibrary][%s] Saved images: %s", il.entry, target)
 		}
 	}
 
