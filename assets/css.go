@@ -7,7 +7,7 @@ import (
 	"path"
 	"runtime"
 
-	"github.com/mijia/gobuildweb/loggers"
+	"github.com/zhiwang-web/gobuildweb/loggers"
 )
 
 type _StyleSheet struct {

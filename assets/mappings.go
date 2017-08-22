@@ -13,7 +13,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/mijia/gobuildweb/loggers"
+	"github.com/zhiwang-web/gobuildweb/loggers"
 )
 
 type AssetsMappingItem struct {

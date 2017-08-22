@@ -5,7 +5,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-	//"github.com/mijia/gobuildweb/loggers"
 )
 
 type _ImageLibrary struct {

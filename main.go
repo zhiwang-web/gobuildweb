@@ -9,8 +9,8 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/agtorre/gocolorize"
-	"github.com/mijia/gobuildweb/assets"
-	"github.com/mijia/gobuildweb/loggers"
+	"github.com/zhiwang-web/gobuildweb/assets"
+	"github.com/zhiwang-web/gobuildweb/loggers"
 )
 
 type ProjectConfig struct {

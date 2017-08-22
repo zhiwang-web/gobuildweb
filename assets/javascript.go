@@ -5,7 +5,7 @@ import (
 	"os/exec"
 	"path"
 
-	"github.com/mijia/gobuildweb/loggers"
+	"github.com/zhiwang-web/gobuildweb/loggers"
 )
 
 type _JavaScript struct {

@@ -11,8 +11,8 @@ import (
 	"time"
 
 	"github.com/BurntSushi/toml"
-	"github.com/mijia/gobuildweb/assets"
-	"github.com/mijia/gobuildweb/loggers"
+	"github.com/zhiwang-web/gobuildweb/assets"
+	"github.com/zhiwang-web/gobuildweb/loggers"
 	"gopkg.in/bufio.v1"
 	"gopkg.in/fsnotify.v1"
 	"runtime"

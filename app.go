@@ -11,8 +11,8 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/mijia/gobuildweb/assets"
-	"github.com/mijia/gobuildweb/loggers"
+	"github.com/zhiwang-web/gobuildweb/assets"
+	"github.com/zhiwang-web/gobuildweb/loggers"
 	"os/signal"
 	"strings"
 	"sync"
