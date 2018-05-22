@@ -70,7 +70,7 @@ func (js _JavaScript) Build(isProduction bool) error {
 	if isCoffee {
 		params = append(params, "--transform", "coffeeify")
 	} else {
-		params = append(params, "--transform", "[", "babelify", "--presets", "[", "es2015", "react", "]", "]")
+		params = append(params, "--transform", "[", "babelify", "--presets", "[", "env", "react", "]", "]")
 	}
 	params = append(params, "--transform", "envify")
 	if isProduction {
@@ -78,6 +78,7 @@ func (js _JavaScript) Build(isProduction bool) error {
 	} else {
 		params = append(params, "--debug")
 	}
+
 	params = append(params, "--outfile", outfile)
 	cmd := exec.Command("./node_modules/browserify/bin/cmd.js", params...)
 	loggers.Debug("[JavaScript][%s] Building asset: %s, %v", js.entry, filename, cmd.Args)
@@ -94,6 +95,7 @@ func (js _JavaScript) Build(isProduction bool) error {
 	if err := os.Rename(outfile, outTarget); err != nil {
 		loggers.Error("rename file error, %v", err)
 	}
+	loggers.Succ("compiled %v", filename)
 
 	// target = js.addFingerPrint("public/javascripts", js.entry+".js")
 	// loggers.Succ("[JavaScript][%s] Saved asset: %s", js.entry, outTarget)

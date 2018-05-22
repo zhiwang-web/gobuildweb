@@ -11,11 +11,12 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/zhiwang-web/gobuildweb/assets"
-	"github.com/zhiwang-web/gobuildweb/loggers"
 	"os/signal"
 	"strings"
 	"sync"
+
+	"github.com/zhiwang-web/gobuildweb/assets"
+	"github.com/zhiwang-web/gobuildweb/loggers"
 )
 
 type TaskType int
@@ -59,16 +60,16 @@ func (app *AppShell) Run() error {
 
 	go func() {
 		err := app.buildImages("")
-		if app.curError == nil  && err != nil {
+		if app.curError == nil && err != nil {
 			app.curError = err
 		}
 		err = app.genAssetsMapping()
-		if app.curError == nil  && err != nil {
+		if app.curError == nil && err != nil {
 			app.curError = err
 		}
 		buildImageDone <- true
 	}()
-	<- buildImageDone
+	<-buildImageDone
 
 	go func() {
 		app.clearJavaScriptsAssets()
@@ -93,9 +94,9 @@ func (app *AppShell) Run() error {
 		buildStyleDone <- true
 	}()
 
-	<- buildStyleDone
-	<- buildJavascriptDone
-	<- buildBinaryDone
+	<-buildStyleDone
+	<-buildJavascriptDone
+	<-buildBinaryDone
 
 	go app.startRunner()
 	if app.curError != nil {
@@ -110,14 +111,14 @@ func (app *AppShell) Run() error {
 	return nil
 }
 
-func (app *AppShell)interruptProcess(){
+func (app *AppShell) interruptProcess() {
 	//capture Interrupt signal
-	if(app.isProduction) {
+	if app.isProduction {
 		return
 	}
 	interruptChan := make(chan os.Signal, 1)
 	signal.Notify(interruptChan, os.Interrupt)
-	go func(){
+	go func() {
 		for sig := range interruptChan {
 			loggers.Info("Receive Interrupt Signal(%v), kill the app!", sig)
 			app.kill()
@@ -242,7 +243,6 @@ func (app *AppShell) buildPackage() error {
 	loggers.Succ("Finish packing the deploy package in %s.zip", pkgName)
 	return nil
 }
-
 
 func (app *AppShell) startRunner() {
 	for task := range app.taskChan {
@@ -518,7 +518,7 @@ func (app *AppShell) buildBinary(params ...string) error {
 	if err := app.buildCmd.Run(); err != nil {
 		if strings.Contains(err.Error(), "interrupt") {
 			loggers.Info("File changed while building binary, rebuild will start!")
-			<- app.taskChan
+			<-app.taskChan
 			return nil
 		} else {
 			loggers.Error("Building failed: %v", err)
@@ -533,8 +533,8 @@ func (app *AppShell) buildBinary(params ...string) error {
 
 func NewAppShell(args []string) *AppShell {
 	app := &AppShell{
-		args:     args,
-		taskChan: make(chan AppShellTask,2),
+		args:       args,
+		taskChan:   make(chan AppShellTask, 2),
 		buildGuard: &sync.Mutex{},
 	}
 	//app.interruptProcess()
@@ -544,7 +544,7 @@ func NewAppShell(args []string) *AppShell {
 func (app *AppShell) stopBuildBinary(params ...string) error {
 	app.buildGuard.Lock()
 	defer app.buildGuard.Unlock()
-	if app.buildCmd!= nil && (app.buildCmd.ProcessState == nil || !app.buildCmd.ProcessState.Exited()) {
+	if app.buildCmd != nil && (app.buildCmd.ProcessState == nil || !app.buildCmd.ProcessState.Exited()) {
 		if runtime.GOOS == "windows" {
 			if err := app.buildCmd.Process.Kill(); err != nil {
 				loggers.Error(err.Error())
