@@ -10,12 +10,13 @@ import (
 	"sync"
 	"time"
 
+	"runtime"
+
 	"github.com/BurntSushi/toml"
 	"github.com/zhiwang-web/gobuildweb/assets"
 	"github.com/zhiwang-web/gobuildweb/loggers"
 	"gopkg.in/bufio.v1"
 	"gopkg.in/fsnotify.v1"
-	"runtime"
 )
 
 type Command func(args []string) error
@@ -84,11 +85,11 @@ func updateAssetsDeps() error {
 	}
 	fmt.Println()
 	//loggers.Info("Start to loading assets dependencies...")
-	loggers.Info("npm install ...")
-	npmInstallCmd := exec.Command("npm", "install")
-	if err := npmInstallCmd.Run(); err != nil {
-		loggers.Warn("Error when run npm install: %v", err)
-	}
+	// loggers.Info("npm install ...")
+	// npmInstallCmd := exec.Command("npm", "install")
+	// if err := npmInstallCmd.Run(); err != nil {
+	// 	loggers.Warn("Error when run npm install: %v", err)
+	// }
 
 	//checkParams := []string{"list", "--depth", "0"}
 	//params := []string{"install", ""}
