@@ -70,7 +70,7 @@ func (js _JavaScript) Build(isProduction bool) error {
 	if isCoffee {
 		params = append(params, "--transform", "coffeeify")
 	} else {
-		params = append(params, "--transform", "[", "babelify", "--presets", "[", "env", "react", "]", "]")
+		params = append(params, "--transform", "[", "babelify", "--presets", "[", "@babel/preset-env", "@babel/preset-react", "]", "]")
 	}
 	params = append(params, "--transform", "envify")
 	if isProduction {
